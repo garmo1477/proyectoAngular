@@ -54,19 +54,19 @@ export class ArticleComponent implements OnInit {
 
     swal({
       title: "¿Estás seguro/a?",
-      text: "Una vez borrado el articulo no podrás recuperarlo",
+      text: "Una vez borrado el artículo no podrás recuperarlo",
       icon: "warning",
       buttons: [true, true],
       dangerMode: true,
     })
       .then((willDelete) => {
         if (willDelete) {
-          //eliminamos el articulo con el id correspondiente
+          //eliminamos el artículo con el id correspondiente
           this._articleService.delete(id).subscribe(
 
             //y si no hay error redireccionamos
             response => {
-              swal("El articulo ha sido borrado correctamente", {
+              swal("El artículo ha sido borrado correctamente", {
                 icon: "success",
               });
               this._router.navigate(['/blog']);
@@ -79,7 +79,7 @@ export class ArticleComponent implements OnInit {
           );
 
         } else {
-          swal("No se ha borrado el articulo");
+          swal("No se ha borrado el artículo");
         }
       });
   }

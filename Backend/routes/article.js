@@ -15,7 +15,7 @@ router.get('/test-controller', ArticleController.test);
 
 // rutas útiles
 router.post('/save', ArticleController.save);
-//para que saque los ultimos articulos y q sea opcional se pone ?
+//para que saque los ultimos artículos y q sea opcional se pone ?
 router.get('/articles/:last?', ArticleController.getArticles);
 
 router.get('/article/:id', ArticleController.getArticle);

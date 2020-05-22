@@ -11,4 +11,4 @@ var ArticleSchema = Schema({
 });
 
 module.exports = mongoose.model('Article', ArticleSchema);
-//crea una coleccion q se llamara articles donde guarda documentos de este tipo y con estructura dentro de la colección
+//crea una colección q se llamara articles donde guarda documentos de este tipo y con estructura dentro de la colección

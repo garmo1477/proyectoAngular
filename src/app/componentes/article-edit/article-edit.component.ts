@@ -51,7 +51,7 @@ export class ArticleEditComponent implements OnInit {
   ) {
     this.article = new Article('', '', '', null, null);
     this.is_edit = true;
-    this.page_title = 'Editar articulo';
+    this.page_title = 'Editar artículo';
     this.url = Global.url;
   }
   ngOnInit() {
@@ -59,24 +59,24 @@ export class ArticleEditComponent implements OnInit {
   }
 
   onSubmit() {
-    //pasamos el id del articulo a editar y mostramos los datos que ya coniene
+    //pasamos el id del artículo a editar y mostramos los datos que ya coniene
     this._articleService.update(this.article._id, this.article).subscribe(
       //recoger los datos que nos llegue si todo es correcto
       response => {
         //si la respuesta llega correctamente
         if (response.status == 'success') {
           this.status = 'success';
-          //le damos valor a la propiedad de articulos
+          //le damos valor a la propiedad de artículos
           this.article = response.article;
 
           //CREAMOS UNA ALERTA para avisar que se ha editado correctamente, con la librería sweetalert
           swal(
-            'Articulo editado',
-            'El articulo se ha editado correctamente',
+            'artículo editado',
+            'El artículo se ha editado correctamente',
             'success'
           );
 
-          //redirigimos a la página del articulo
+          //redirigimos a la página del artículo
           this._router.navigate(['/blog/articulo', this.article._id]);
         } else {
           this.status = 'error';
@@ -90,7 +90,7 @@ export class ArticleEditComponent implements OnInit {
         this.status = 'error';
         swal(
           'Fallo en la edición',
-          'El articulo NO se ha podido editar',
+          'El artículo NO se ha podido editar',
           'error'
         );
       }

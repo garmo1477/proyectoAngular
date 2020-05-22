@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(){
-    //ponemos que sea true getArticles, para que saque solo los ultimos articulos
+    //ponemos que sea true getArticles, para que saque solo los ultimos artículos
     this._articleService.getArticles(true).subscribe(
       response =>{
          if(response.articles){

@@ -17,7 +17,7 @@ var controller = {
     },
     test: (req, res) => {
         return res.status(200).send({
-            message: 'Soy la acción test de mi controlador de articulos'
+            message: 'Soy la acción test de mi controlador de artículos'
         })
     },
     save: (req, res) => {
@@ -38,10 +38,10 @@ var controller = {
             });
         }
         if (validate_title && validate_content) {
-            //crear el objeto a guardar, el articulo
+            //crear el objeto a guardar, el artículo
             var article = new Article();
 
-            //asignar valores al objeto, articulo
+            //asignar valores al objeto, artículo
             article.title = params.title;
             article.content = params.content;
             if (params.image ) {
@@ -51,14 +51,14 @@ var controller = {
             }
             
 
-            // guardar el articulo
+            // guardar el artículo
             article.save((err, articleStored) => {
                 if (err || !articleStored) {
                     return res.status(404).send({
                         message: 'El artciulo no se ha guardado'
                     });
                 }
-                //devolver el articulo
+                //devolver el artículo
                 return res.status(200).send({
                     status: 'success',
                     article: articleStored
@@ -94,7 +94,7 @@ var controller = {
             if (!articles) {
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No hay articulos para mostrar'
+                    message: 'No hay artículos para mostrar'
                 });
             }
 
@@ -114,19 +114,19 @@ var controller = {
         if (!articleId || articleId == null) {
             return res.status(404).send({
                 status: 'error',
-                message: 'No existe el articulo buscado'
+                message: 'No existe el artículo buscado'
             });
         }
-        //buscar el articulo
+        //buscar el artículo
         Article.findById(articleId, (err, article) => {
 
             if (err || !article) {
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No existe el articulo buscado'
+                    message: 'No existe el artículo buscado'
                 });
             }
-            //devolver el archivo json del articulo buscado
+            //devolver el archivo json del artículo buscado
             return res.status(200).send({
                 status: 'success',
                 article
@@ -136,7 +136,7 @@ var controller = {
 
     update: (req, res) => {
 
-        //recoger el id del articulo por la url
+        //recoger el id del artículo por la url
         var articleId = req.params.id;
 
         //Recoger los datos que llegan por put
@@ -167,7 +167,7 @@ var controller = {
                 if (!articleUpdate) {
                     return res.status(404).send({
                         status: 'error',
-                        message: 'No existe el articulo!!'
+                        message: 'No existe el artículo!!'
                     });
                 }
                 return res.status(200).send({
@@ -191,7 +191,7 @@ var controller = {
         //Recoger el id de la url
         var articleId = req.params.id;
         // hacer un find y delete, buscar y eliminar
-        //que el id sea igual al id de articulo que existe, si no existe devuelve un error (err) y si no devuelve el documento del articulo  que ha eliminado
+        //que el id sea igual al id de artículo que existe, si no existe devuelve un error (err) y si no devuelve el documento del artículo  que ha eliminado
         Article.findOneAndDelete({ _id: articleId }, (err, articleRemoved) => {
             if (err) {
                 return res.status(500).send({
@@ -202,7 +202,7 @@ var controller = {
             if (!articleRemoved) {
                 return res.status(404).send({
                     status: 'error',
-                    message: 'No se ha borrado el articulo, posiblemente no exista'
+                    message: 'No se ha borrado el artículo, posiblemente no exista'
                 });
             }
             return res.status(200).send({
@@ -252,14 +252,14 @@ var controller = {
             //si todo es valido sacamos el id de la url
             var articleId = req.params.id;
             if (articleId) {
-                //buscar el articulo y asignarle un nombre de imagen y actualizarlo
+                //buscar el artículo y asignarle un nombre de imagen y actualizarlo
                 Article.findOneAndUpdate({ _id: articleId }, { image: file_name }, { new: true }, (err, articleUpdate) => {
 
 
                     if (err || !articleUpdate) {
                         return res.status(200).send({
                             status: 'error',
-                            message: 'Error al guardar imagen de articulo'
+                            message: 'Error al guardar imagen de artículo'
                         });
                     }
 
@@ -299,7 +299,7 @@ var controller = {
 
     },
 
-    //BUSCADOR DE ARTICULOS
+    //BUSCADOR DE ARTÍCULOS
     search: (req, res) => {
         //recoger el string a buscar
         var searchString = req.params.search;
@@ -307,7 +307,7 @@ var controller = {
         //hacer un find 
         Article.find({
             "$or": [
-                //cuando el searchString esté incluido en el title o el esté incluido en content, sacamos el articulo que coincida
+                //cuando el searchString esté incluido en el title o el esté incluido en content, sacamos el artículo que coincida
                 { 'title': { "$regex": searchString, "$options": "i" } },
                 { 'content': { "$regex": searchString, "$options": "i" } }
             ]
@@ -323,7 +323,7 @@ var controller = {
                 if (!articles || articles.length <= 0) {
                     return res.status(500).send({
                         status: 'error',
-                        message: "No hay articulos para mostrar"
+                        message: "No hay artículos para mostrar"
                     });
                 }
                 return res.status(200).send({
