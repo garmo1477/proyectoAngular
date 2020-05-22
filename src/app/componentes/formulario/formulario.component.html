@@ -1,0 +1,63 @@
+<app-slider [nombre]="'Contáctanos'" [size]="'small'"></app-slider>
+<div class="center">
+    <section id="content">
+        <h1 class="subheader">Formulario</h1>
+        <!--Para que funcionen correctamente los formularios hay que abrir app.module y cargar un nuevo módulo llamado FormsModule. Le damos un nombre al formulario con #userForm=""-->
+        
+        <!--<div id="datos-al-vuelo" *ngIf="user.nombre">
+            <h2 class="subheader">Datos al vuelo</h2>
+            <ul>
+                <li> {{ user.nombre }} </li>
+                <li> {{ user.apellidos }} </li>
+                <li> {{ user.bio }} </li>
+                <li> {{ user.genero }} </li>
+            </ul>
+        </div>-->
+        <form class="mid-form" #userForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="user.nombre" required />
+                <small *ngIf="!nombre.valid && nombre.touched">
+                    El nombre no es válido
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" #apell="ngModel" [(ngModel)]="user.apellidos" required />
+                <small *ngIf="!apell.valid && apell.touched">
+                    Los apellidos no son válidos
+                </small>
+            </div>
+
+            <div class="form-group">
+                <label for="bio">Biografia</label>
+                <textarea name="bio" #bio="ngModel" [(ngModel)]="user.bio" required ></textarea>
+                <small *ngIf="!bio.valid && bio.touched">
+                    La biografía no es válida
+                </small>
+            </div>
+
+            <div class="form-group radibuttons">
+                <input type="radio" name="genero" value="hombre" #genero="ngModel" [(ngModel)]="user.genero" required /> Hombre
+                <input type="radio" name="genero" value="mujer" #genero="ngModel" [(ngModel)]="user.genero" /> Mujer
+                <input type="radio" name="genero" value="otro" #genero="ngModel" [(ngModel)]="user.genero" /> Otro
+                <small *ngIf="!genero.valid && genero.touched">
+                    El genero no es válido
+                </small>
+            </div>
+            
+            <div class="clearfix"></div>
+
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled]="userForm.invalid" />
+
+        </form>
+        <h2 class="subheader">Eventos</h2>
+        <button (click)="hasDadoClick();">Dar click</button>
+        <!--eL EVENTO (blur) es para cuando se sale de algo, en este caso de un input. existe (keyup) también-->
+        <input type="text" [(ngModel)]="campo" (blur)="hasSalido();" style="margin-top:20px;" />
+        {{ campo }}
+
+    </section>
+    <app-sidebar></app-sidebar>
+</div>

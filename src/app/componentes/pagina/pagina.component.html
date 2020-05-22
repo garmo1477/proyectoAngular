@@ -1,0 +1,23 @@
+<app-slider [nombre]="'A Probar Cosas'"></app-slider>
+<!--va al router y revisa cual url está llamando y la carga aquí-->
+<div class="center">
+    <section id="content">
+        <h1 class="subheader">Página de Pruebas</h1>
+
+        <!--Si existe un nombre aparece el h2 si no aparecen texto de que no existe parametros. Se usa el then como si y el else como sino-->
+        <div *ngIf="nombre; then siHay else noParam"></div>
+        <!--otra directiva de angular-->
+        <ng-template #siHay>
+            <h2>Bienvenido/a {{ nombre }}</h2>
+        </ng-template>
+
+        <ng-template #noParam>
+            <h2>No hay parametros en la url</h2>
+        </ng-template>
+        <!--Para hacer redicciones en angular-->
+        <button (click)="redireccion();">Mi nombre</button>
+
+
+    </section>
+    <app-sidebar></app-sidebar>
+</div>

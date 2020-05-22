@@ -1,0 +1,51 @@
+<app-slider 
+    [nombre]="'Listado de Películas'"
+    [size]="'small'"
+    ></app-slider>
+
+<div class="center">
+    <section id="content">
+        <div id="favorita" *ngIf="favorita">
+            <h2 class="subheader">Película favorita</h2>
+            <h4>
+                <!--Utilizando PIPES, el uppercase por ejemplo-->
+                {{ favorita.title | uppercase }}
+            </h4>
+            <h4>
+                {{ favorita.year | espar }}                
+            </h4>
+        </div>
+        <!--
+        <h1 class="subheader">Películas</h1>
+
+        <h2>{{ titulo }}</h2>
+        <button (click)="cambiarTitulo()">Cambiar título</button>
+        <hr />
+        <h2>Mostrar primera película</h2>
+        {{ peliculas[0].title }}
+
+        <hr />
+
+        <h2>Número de películas</h2>
+
+        <div *ngIf="peliculas.length <= 3">
+            <p>Hay muy pocas películas :</p>
+        </div>
+
+        <div *ngIf="peliculas.length > 3">
+            <p>Hay muchas películas :</p>
+        </div>
+
+        {{ peliculas.length }}  <hr />
+-->
+         
+        <div id="articles" *ngIf="peliculas">
+            <!--Sobre el FOR Por cada iteracción con el array pelicula crea un objeto pelicula-->
+            <div *ngFor="let pelicula of peliculas; let i = index;">
+                <!--Llamamos al componente hijo aquí que es el app-pelicula, junto con el método MarcarFavorita que a su vez llama a un evento mostrarFavorita, que hemos creado en el componente padre peliculas.component.ts. -->
+                 <app-pelicula [pelicula]="pelicula" (MarcarFavorita)="mostrarFavorita($event)"></app-pelicula>
+            </div>
+        </div>
+    </section>
+    <app-sidebar></app-sidebar>
+</div>

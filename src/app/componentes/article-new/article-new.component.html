@@ -1,0 +1,50 @@
+
+<div class="center">
+    <section id="content">
+        <h1 class="subheader">{{ page_title }}</h1>
+        
+        <form class="mid-form" #articleForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" name="title" #title="ngModel" [(ngModel)]="article.title" required />
+                <small *ngIf="!title.valid && title.touched">
+                    El título no es válido
+                </small>
+            </div>            
+
+            <div class="form-group">
+                <label for="content">Contenido</label>
+                <textarea name="content" #content="ngModel" [(ngModel)]="article.content" required ></textarea>
+                <small *ngIf="!content.valid && content.touched">
+                    Contenido no válido
+                </small>
+            </div>
+
+            <div class="form-group">
+                <!--Para hacer lo de API RESPONSE hay q hacer cambio en el API, haciendo que sea opcional pasar el id de imagen por la url-->
+                <div class="image-thumb" *ngIf="is_edit">
+                 
+                    <!--Para que cargue la imagen hay que importar el servicio Global en article.component.ts-->
+                    <img src="{{url + 'get-image/' + article.image }}" alt="{{ article.title }}" *ngIf="article.image"/>
+        
+                    <img src="assets/images/sin_foto.svg" alt="{{ article.title }}" *ngIf="!article.image" width="130"/>
+               
+                </div>
+                <angular-file-uploader 
+                    [config]="afuConfig" 
+                    (ApiResponse)="imageUpload($event)"
+                >
+                </angular-file-uploader>
+             
+            </div>           
+            
+            <div class="clearfix"></div>
+
+            <input type="submit" value="Guardar" class="btn btn-success" [disabled]="articleForm.invalid" />
+
+        </form>
+        
+
+    </section>
+    <app-sidebar></app-sidebar>
+</div>

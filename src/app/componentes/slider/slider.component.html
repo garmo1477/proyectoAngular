@@ -1,0 +1,9 @@
+<!--Si hay un atributo size hacer slider small, si es diferente de size hace slider-big. slider-small son las clases de css que tienen ya sus valores en styles-->
+<div id="slider" [ngClass]="{
+    'slider-big': !size || size == 'big', 
+    'slider-small': size == 'small'
+}">
+    <h1>{{ nombre }}</h1>
+    <!--hacemos ngIf para que el boton solo aparezca cuando el slider sea grande-->
+    <a [routerLink]="['/blog']" class="btn-white" *ngIf="!size || size == 'big'">Ir al blog</a>
+</div>

@@ -1,0 +1,15 @@
+<!--Propiedad input= [nombre]-->
+
+<app-slider [nombre]="'¡Bienvenidos!'"></app-slider>
+<!--va al router y revisa cual url está llamando y la carga aquí-->
+<div class="center">
+    <section id="content">
+        <h4 style="margin-top: 60px;" class="subhead">
+             Esta web la he creado realizando un curso de Udemy sobre Angular. Es mi primer curso con este Framework. Mi intención es seguir aprendiendo. En este proyecto podemos crear, listar, editar y eliminar artículos de blog, también hay un buscador para encontrar artículos del mismo. Una página de Películas donde se listan algunas películas con su foto, fecha y título y etc. ¡Muchas Gracias por leerme!
+        </h4>
+       
+        <h2 class="subheader">{{ title }}</h2>
+        <app-articles [articles]="articles"></app-articles>   
+    </section>
+    <app-sidebar></app-sidebar>
+</div>

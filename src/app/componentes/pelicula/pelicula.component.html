@@ -1,0 +1,26 @@
+<article class="article-item">
+    <div class="image-wrap">
+        <img src="{{ pelicula.image }}" alt="{{ pelicula.title}}" />
+        <!--podemos poner el titulo en el alt de esta manera-->
+    </div>
+    <!--Ya dentro del bucle, usamos el objeto pelicula citado en el FOR para listar-->
+    <h2>{{ pelicula.title }}</h2>
+    <span class="date">
+        Hace 5 minutos
+    </span>
+    <!--para aplicar estilos con condiciones, si el año de la pelicula mayor que 2016. otra opcion para hacerlo
+[class.year-green]="pelicula.year > 2016"
+[class.year-red]="pelicula.year < 2016"-->
+    <span class="year" [ngClass]="{
+                    'year-green': pelicula.year > 2016,
+                    'year-red': pelicula.year < 2016
+                }">
+        {{ pelicula.year }}
+    </span>
+
+
+    <!--Lllamamos a la función seleccionar creada en el componente hijo que pasará el método MarcarFavorita, del método hijo también-->
+    <button (click)="seleccionar($event, pelicula)">Favorita</button>
+
+    <div class="clearfix"></div>
+</article>

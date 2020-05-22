@@ -1,0 +1,15 @@
+<app-slider 
+    [nombre]="'BLOG'"
+    [size]="'small'"
+></app-slider>
+<!--va al router y revisa cual url está llamando y la carga aquí-->
+<div class="center">
+    <section id="content">
+        <h1 class="subheader">Blog</h1>
+        <!--bucle para visualizar los articulos-->
+        <app-articles [articles]="articles">
+            <!--pasar la propiedad articles de articles.component.ts-->            
+        </app-articles>
+    </section>
+    <app-sidebar></app-sidebar>
+</div>
